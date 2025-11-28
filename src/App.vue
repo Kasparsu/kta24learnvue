@@ -1,10 +1,13 @@
 <script setup>
 import { ref } from 'vue';
 import Tabs from './components/Tabs.vue';
-let titles = ref(['Music', 'Documents']);
-let contents = ref([
-    'Some Cool music',
-    'Some Cool documents',
+import ToDo from './pages/ToDo.vue';
+import Modals from './pages/Modals.vue';
+
+let titles = ref(['ToDo', 'Modals']);
+let components = ref([
+    ToDo,
+    Modals,
 ]);
 let activeTab = ref(0);
 
@@ -14,5 +17,5 @@ function setActiveTab(i){
 </script>
 <template>
    <Tabs :active="activeTab" :items="titles" @changed="setActiveTab"></Tabs>
-   <p>{{ contents[activeTab] }}</p>
+   <component :is="components[activeTab]"></component>
 </template>
